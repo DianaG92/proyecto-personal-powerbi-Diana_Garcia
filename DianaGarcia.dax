@@ -1,0 +1,45 @@
+﻿DEFINE 
+---- MODEL MEASURES BEGIN ----
+MEASURE DAX_medidas[AVG_income] = AVERAGE(f_marketing_campaign[Income])
+MEASURE DAX_medidas[Max_income] = MAX(f_marketing_campaign[Income])
+MEASURE DAX_medidas[Min_income] = MIN(f_marketing_campaign[Income])
+MEASURE DAX_medidas[TotalAcceptedCmp] = 
+SUMX(
+    f_marketing_campaign, 
+    IF(f_marketing_campaign[Cmp1] = "Aceptada", 1, 0) + 
+    IF(f_marketing_campaign[Cmp2] = "Aceptada", 1, 0) + 
+    IF(f_marketing_campaign[Cmp3] = "Aceptada", 1, 0) + 
+    IF(f_marketing_campaign[Cmp4] = "Aceptada", 1, 0) + 
+    IF(f_marketing_campaign[Cmp5] = "Aceptada", 1, 0) + 
+    IF(f_marketing_campaign[FinalCmp] = "Aceptada", 1, 0)
+)
+MEASURE DAX_medidas[TotalChildren] = SUM(f_marketing_campaign[KidHome]) + SUM(f_marketing_campaign[TeenHome])
+MEASURE DAX_medidas[TotalClients] = countrows(f_marketing_campaign)
+MEASURE DAX_medidas[TotalCmp1] = SUM(f_marketing_campaign[AcceptedCmp1])
+MEASURE DAX_medidas[TotalCmp2] = SUM(f_marketing_campaign[AcceptedCmp2])
+MEASURE DAX_medidas[TotalCmp3] = SUM(f_marketing_campaign[AcceptedCmp3])
+MEASURE DAX_medidas[TotalCmp4] = SUM(f_marketing_campaign[AcceptedCmp4])
+MEASURE DAX_medidas[TotalCmp5] = SUM(f_marketing_campaign[AcceptedCmp5])
+MEASURE DAX_medidas[TotalFish] = SUM(f_marketing_campaign[FishProds])
+MEASURE DAX_medidas[TotalFruit] = SUM(f_marketing_campaign[FruitProds])
+MEASURE DAX_medidas[TotalGold] = SUM(f_marketing_campaign[GoldProds])
+MEASURE DAX_medidas[TotalIncome] = SUM(f_marketing_campaign[Income])
+MEASURE DAX_medidas[TotalKids] = SUM(f_marketing_campaign[KidHome])
+MEASURE DAX_medidas[TotalMeat] = SUM(f_marketing_campaign[MeatProds])
+MEASURE DAX_medidas[TotalProductsPurchases] = 
+SUMX(
+    f_marketing_campaign,
+    f_marketing_campaign[WineProds] +
+    f_marketing_campaign[FruitProds] +
+    f_marketing_campaign[SweetProds] +
+    f_marketing_campaign[FishProds] +
+    f_marketing_campaign[MeatProds] +
+    f_marketing_campaign[GoldProds]
+)
+MEASURE DAX_medidas[TotalPurchases] = SUM(f_marketing_campaign[WebPurchases]) + SUM(f_marketing_campaign[CatalogPurchases]) + SUM(f_marketing_campaign[DealPurchases]) + SUM(f_marketing_campaign[StorePurchases])
+MEASURE DAX_medidas[TotalSweet] = SUM(f_marketing_campaign[SweetProds])
+MEASURE DAX_medidas[TotalTeen] = SUM(f_marketing_campaign[TeenHome])
+MEASURE DAX_medidas[TotalWebVisits] = SUM(f_marketing_campaign[WebVisitsMonth])
+MEASURE DAX_medidas[TotalWine] = SUM(f_marketing_campaign[WineProds])
+---- MODEL MEASURES END ----
+
